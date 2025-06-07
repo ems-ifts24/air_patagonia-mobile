@@ -1,0 +1,7 @@
+{
+  "name": "air_patagonia-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
