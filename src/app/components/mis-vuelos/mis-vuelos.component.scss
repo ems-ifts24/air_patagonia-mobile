@@ -1,0 +1,38 @@
+.containerMisVuelos{
+    background-color: rgba(61, 107, 146, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100vh;
+}
+.contenedorVuelos{
+    background-color: rgba(24, 58, 89, 1);
+    width: 80%;
+}
+.barraBusqueda{
+    color:white
+}
+
+#tituloMisVuelos{
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}
+#codigoVuelo{
+    text-align: center;
+    color: white;
+}
+
+p{
+    
+    font-size: 1.4rem;
+    color: white;
+    padding:1rem
+}
+
+.labelOrigenDestino{
+    display: flex;
+    justify-content:space-between;
+    
+}

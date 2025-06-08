@@ -1,0 +1,37 @@
+<div class="containerMisVuelos">
+  <ion-card-title id="tituloMisVuelos">Mis Vuelos</ion-card-title>
+
+  <!-- 🔍 Barra de búsqueda afuera de las cards -->
+  <ion-searchbar 
+    placeholder="Buscar vuelo"
+    [(ngModel)]="terminoBusqueda"
+    (ionInput)="filtrarVuelos()"
+    showClearButton="always"
+    class="ion-margin-bottom barraBusqueda">
+  </ion-searchbar>
+
+  <!-- 🧾 Lista de vuelos filtrados -->
+  @if (vuelosFiltrados.length > 0) {
+    @for (vuelo of vuelosFiltrados; track vuelo.codigo) {
+      <ion-card class="ion-margin-bottom contenedorVuelos">
+        <ion-card-header>
+          <ion-card-title id="codigoVuelo">Vuelo {{ vuelo.codigo }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="cardVuelos">
+          <div class="containerOrigenDestino">
+            <ion-label class="labelOrigenDestino">
+              <p>{{ vuelo.origen }}</p>
+              <p>{{ vuelo.destino }}</p>
+            </ion-label>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    }
+  } @else {
+    <ion-card>
+      <ion-card-content>
+        <ion-text color="medium">No hay vuelos disponibles.</ion-text>
+      </ion-card-content>
+    </ion-card>
+  }
+</div>
