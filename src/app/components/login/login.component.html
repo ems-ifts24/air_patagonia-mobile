@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Air Patagonia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <img src="assets/logo.png" alt="Logo Air Patagonia" class="logo">
+    <h2>Bienvenido</h2>
+    <p>Inicia sesión para continuar</p>
+  </div>
+
+  <form>
+    <ion-item>
+      <ion-label position="floating">Dni</ion-label>
+      <ion-input type="number" name="dni" id="dni" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" name="password" id="password" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top" type="button" id="btnIngresar" (click)="login()">
+      Iniciar sesión
+    </ion-button>
+  </form>
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-text><a href="#">¿Olvidaste tu contraseña?</a></ion-text>
+  </div>
+</ion-content>

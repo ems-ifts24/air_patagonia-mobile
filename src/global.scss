@@ -35,3 +35,9 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+//  color fondo de pantallas
+ion-content {
+    --background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: #fff;
+}
