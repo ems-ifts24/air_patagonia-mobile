@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/mis-vuelos" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qr-container">
+
+    <h2>Código QR <br>del Pasaje</h2>
+
+    <ion-card class="qr-card">
+
+      <ion-card-content>
+
+        <span class="nombre-pasajero">Juan Perez</span>
+
+        <div class="qr-code">
+          <!-- <img [src]="qrDataUrl" *ngIf="qrDataUrl"> -->
+          <img src="" alt="Código QR del Pasaje" *ngIf="qrDataUrl">
+          <ion-spinner name="crescent" *ngIf="!qrDataUrl"></ion-spinner> 
+          <!-- etiqueta para mostrar circulo de carga -->
+        </div>
+
+        <div class="info-vuelo">
+          <span class="numero-vuelo">AR1234</span>
+          <span class="numero-asiento">12 A</span>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <!-- (click)=descargarQR()" -->
+    <ion-button class="boton-descarga">
+      <ion-icon name="download" slot="start"></ion-icon>
+      Descargar QR
+    </ion-button>
+  </div>
+</ion-content>

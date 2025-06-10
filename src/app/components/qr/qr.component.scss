@@ -1,0 +1,103 @@
+// estilos para boton descarga 
+ion-button.boton-descarga {
+    --background: #27364682;
+    --border-radius: 0.9375rem;
+    --padding-top: 1.25rem;
+    --padding-bottom: 1.25rem;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+    max-width: 380px;
+    margin: 1rem auto;
+    display: block;
+    padding: 15px;
+}
+
+// boton volver
+ion-back-button {
+    --color: #ffffff;
+    margin-left: 0.75rem;
+}
+
+// estilos barra superior
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    position: absolute;
+}
+
+ion-content {
+    --padding-top: 70px;
+}
+
+.qr-container {
+    max-width: 380px;
+    margin: auto;
+
+    h2 {
+        padding: 15px;
+        width: 100%;
+        word-wrap: break-word;
+        font-size: 50px;
+        margin: 0;
+    }
+}
+
+.qr-card {
+    background: rgb(212, 212, 212);
+    width: 350px;
+    height: 480px;
+    margin: 0 auto;
+    border-radius: 1rem;
+}
+
+ion-card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    
+    .qr-code {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(0, 0, 0);
+        margin: 0.7rem 0 0.8rem;
+        
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.info-vuelo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-top: 0.5rem;
+  
+    .numero-vuelo, 
+    .numero-asiento {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #0d1e29a6;
+        white-space: nowrap;
+    }
+}
+
+.nombre-pasajero {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0d1e29a6;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
