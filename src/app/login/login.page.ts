@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  standalone: true,
-  imports: [IonicModule]
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+  standalone: false,
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
   constructor(private router: Router) { }
   
   ngOnInit() {}
