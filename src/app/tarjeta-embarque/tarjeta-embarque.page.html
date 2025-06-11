@@ -15,7 +15,7 @@
 
       <ion-card-content>
 
-        <span class="nombre-pasajero">{{ passengerName }}</span>
+        <span class="nombre-pasajero">{{ nombrePasajero }}</span>
 
         <div class="qr-code">
           <img [src]="qrDataUrl" alt="Código QR del Pasaje" *ngIf="qrDataUrl">
@@ -26,18 +26,17 @@
         </div>
 
         <div class="info-vuelo">
-          <span class="numero-vuelo">{{ flightNumber }}</span>
-          <span class="numero-asiento">{{ seatNumber }}</span>
+          <span class="numero-vuelo">{{ numeroVuelo }}</span>
+          <span class="numero-asiento">{{ numeroAsiento }}</span>
         </div>
 
       </ion-card-content>
 
     </ion-card>
 
-    <!-- (click)=descargarQR()" -->
-    <ion-button class="boton-descarga">
+    <ion-button class="boton-descarga" (click)="descargarTarjetaEmbarque()">
       <ion-icon name="download" slot="start"></ion-icon>
-      Descargar QR
+      Descargar tarjeta de embarque
     </ion-button>
   </div>
 </ion-content>

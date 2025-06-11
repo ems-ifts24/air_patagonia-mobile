@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'qr',
-    loadComponent: () => import('./components/qr/qr.component').then(m => m.QrComponent)
+    path: 'tarjeta-embarque',
+    loadChildren: () => import('./tarjeta-embarque/tarjeta-embarque.module').then( m => m.TarjetaEmbarquePageModule)
   },
   {
     path: '',
