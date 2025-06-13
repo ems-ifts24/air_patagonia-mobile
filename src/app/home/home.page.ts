@@ -33,7 +33,5 @@ filtrarVuelos() {
     vuelo.destino.toLowerCase().includes(termino)
   );
 }
-verDetalleVuelo(id:string){
-  alert("DETALLE DE VUELO EN PROCESO");
-}
+
 }
