@@ -1,46 +1,39 @@
 import { Component } from '@angular/core';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList } from '@ionic/angular/standalone';
-import { MisVuelosComponent } from '../components/mis-vuelos/mis-vuelos.component';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonInput, IonButton, IonList, FormsModule,MisVuelosComponent],
+  imports: [IonicModule,CommonModule,RouterLink,NgIf,NgFor,FormsModule]
 })
 export class HomePage {
-  titulo: string = 'Listado de';
+ vuelos = [
+    { codigo:'AR1234',origen: 'Buenos Aires', destino: 'Bariloche', fecha: '2025-06-15', estado: 'Confirmado' },
+    { codigo:'AR1235',origen: 'Bariloche', destino: 'Mendoza', fecha: '2025-06-20', estado: 'Pendiente' },
+    { codigo:'AR1236',origen: 'Bariloche', destino: 'Mendoza', fecha: '2025-06-20', estado: 'Pendiente' },
+    { codigo:'AR1237',origen: 'Bariloche', destino: 'Mendoza', fecha: '2025-06-20', estado: 'Pendiente' }
+  ];
+  vuelosFiltrados = [...this.vuelos];
+terminoBusqueda: string = '';
 
-  tareas: string[];
+ngOnInit() {
+  this.vuelosFiltrados = [...this.vuelos];
+}
 
-  nuevaTarea = '';
-
-  constructor() {
-    const tareasGuardadas = localStorage.getItem('tareas')
-    this.tareas = tareasGuardadas ? JSON.parse(tareasGuardadas) : [];
-  }
-
-  guardarTareas() {
-    localStorage.setItem('tareas', JSON.stringify(this.tareas))
-  }
-
-  agregarTarea() {
-    const tareaTrim = this.nuevaTarea.trim()
-
-    if (!tareaTrim) return;
-
-    this.tareas.push(tareaTrim)
-
-    this.nuevaTarea = ''
-
-    this.guardarTareas()
-  }
-
-  eliminarTarea(index: number) {
-    this.tareas.splice(index, 1)
-
-    this.guardarTareas();
-  }
+filtrarVuelos() {
+  const termino = this.terminoBusqueda.toLowerCase();
+  this.vuelosFiltrados = this.vuelos.filter(vuelo =>
+     vuelo.codigo.toLowerCase().includes(termino) ||
+    vuelo.origen.toLowerCase().includes(termino) ||
+    vuelo.destino.toLowerCase().includes(termino)
+  );
+}
+verDetalleVuelo(id:string){
+  alert("DETALLE DE VUELO EN PROCESO");
+}
 }
