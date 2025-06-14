@@ -19,7 +19,7 @@ export interface Vuelo {
   providedIn: 'root'
 })
 export class VuelosService {
-  private apiUrl = 'http://localhost:3000/vuelos';
+  private apiUrl = 'http://192.168.0.213:3000/vuelos';
 
   constructor(private http: HttpClient) {}
 
