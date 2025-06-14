@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button defaultHref="/mis-vuelos" icon="chevron-back-outline" text=""></ion-back-button>
+      <ion-back-button [routerLink]="'/home'" icon="chevron-back-outline" text=""></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -18,10 +18,15 @@
         <span class="nombre-pasajero">{{ nombrePasajero }}</span>
 
         <div class="qr-code">
-          <img [src]="qrDataUrl" alt="Código QR del Pasaje" *ngIf="qrDataUrl">
+          @if(qrDataUrl){
+            <img [src]="qrDataUrl" alt="Código QR del Pasaje">
+          }
+          
           <!-- *ngIf="qrDataUrl": muestra la imagen solo si qrDataUrl tiene valor -->
-
-          <ion-spinner name="crescent" *ngIf="!qrDataUrl"></ion-spinner> 
+           @if(!qrDataUrl){
+              <ion-spinner name="crescent"></ion-spinner> 
+           }
+          
           <!-- *ngIf="!qrDataUrl": muestra el circulo de carga si qrDataUrl no tiene valor -->
         </div>
 

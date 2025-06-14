@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
-import { ToastController } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tarjeta-embarque',
-  standalone: false,
+  standalone: true,
   templateUrl: 'tarjeta-embarque.page.html',
   styleUrls: ['./tarjeta-embarque.page.scss'],
+  imports:[RouterLink,IonicModule]
 })
 
 export class TarjetaEmbarquePage implements OnInit {
