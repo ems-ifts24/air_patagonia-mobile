@@ -1,20 +1,71 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-grid class="paginaGrid">
+  <!--  Título -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="8" class="ion-text-center">
+      <ion-card-title id="tituloMisVuelos">Mis Vuelos</ion-card-title>
+    </ion-col>
+  </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- 🔍 Barra de búsqueda -->
+  <ion-row class="ion-justify-content-center rowBusqueda">
+    <ion-col size="8" size-md="6">
+      <ion-searchbar
+        placeholder="Buscar vuelo"
+        [(ngModel)]="terminoBusqueda"
+        (ionInput)="filtrarVuelos()"
+        showClearButton="always"
+        class="barraBusqueda">
+      </ion-searchbar>
+    </ion-col>
+     <ion-col size="4" size-md="6">
+       <ion-button [routerLink]="['/contacto']" id="btnContacto">
+                Contacto
+        </ion-button>
+    </ion-col>
+  </ion-row>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <!--  Lista de vuelos -->
+  <ion-row class="ion-justify-content-center" responsive>
+    @if (vuelosFiltrados.length > 0) {
+      @for (vuelo of vuelosFiltrados; track vuelo.codigo) {
+        <!-- Responsive: 12 col en mobile, 6 en tablet, 4 en desktop -->
+        <ion-col size="12" size-sm="6" size-md="4">
+          <ion-card class="contenedorVuelos">
+            <ion-card-header>
+              <ion-card-title id="codigoVuelo">{{ vuelo.codigo }}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content class="cardVuelos">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <div class="labelInfo">Origen: {{ vuelo.origen }}</div>
+                  </ion-col>
+                  <ion-col size="12">
+                    <div class="labelInfo">Destino: {{ vuelo.destino }}</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
+              <!--  Botón Ver Detalles -->
+              <ion-button
+                expand="block"
+                color="primary"
+                fill="solid">
+                Ver Detalles
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      }
+    } @else {
+      <ion-col size="12" size-md="6">
+        <ion-card class="ion-padding">
+          <ion-card-content>
+            <ion-text color="medium">No hay vuelos disponibles.</ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    }
+  </ion-row>
+</ion-grid>
