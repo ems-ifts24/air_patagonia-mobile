@@ -1,0 +1,27 @@
+{
+  "vuelos": [
+    {
+      "id": 1,
+      "codigo": "AR1234",
+      "origen": "Buenos Aires",
+      "destino": "Bariloche",
+      "fecha": "2025-06-15",
+      "hora": "10:30",
+      "status": "Programado",
+      "asiento": "12A",
+      "pasajero": "Francisco García"
+    },
+    {
+      "id": 2,
+      "codigo": "AR1235",
+      "origen": "Bariloche",
+      "destino": "Mendoza",
+      "fecha": "2025-06-16",
+      "hora": "14:45",
+      "status": "Demorado",
+      "asiento": "15B",
+      "pasajero": "María López"
+    }
+  
+  ]
+}
