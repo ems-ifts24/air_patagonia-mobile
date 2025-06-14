@@ -11,9 +11,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'detalle-vuelo/:codigo',
-    loadComponent: () => import('./detalle-vuelo/detalle-vuelo/detalle-vuelo.page').then( m => m.DetalleVueloPage)
-  },  {
     path: 'contacto',
     loadComponent: () => import('./contacto/contacto/contacto.page').then( m => m.ContactoPage)
   },
