@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
+    path: 'tarjeta-embarque',
+    loadChildren: () => import('./tarjeta-embarque/tarjeta-embarque.module').then( m => m.TarjetaEmbarquePageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',  // ruta por defecto
     pathMatch: 'full'

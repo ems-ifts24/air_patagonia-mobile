@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/mis-vuelos" icon="chevron-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qr-container">
+
+    <h2>Código QR <br>del Pasaje</h2>
+
+    <ion-card class="qr-card">
+
+      <ion-card-content>
+
+        <span class="nombre-pasajero">{{ nombrePasajero }}</span>
+
+        <div class="qr-code">
+          <img [src]="qrDataUrl" alt="Código QR del Pasaje" *ngIf="qrDataUrl">
+          <!-- *ngIf="qrDataUrl": muestra la imagen solo si qrDataUrl tiene valor -->
+
+          <ion-spinner name="crescent" *ngIf="!qrDataUrl"></ion-spinner> 
+          <!-- *ngIf="!qrDataUrl": muestra el circulo de carga si qrDataUrl no tiene valor -->
+        </div>
+
+        <div class="info-vuelo">
+          <span class="numero-vuelo">{{ numeroVuelo }}</span>
+          <span class="numero-asiento">{{ numeroAsiento }}</span>
+        </div>
+
+      </ion-card-content>
+
+      <ion-button class="boton-descarga" (click)="descargarTarjetaEmbarque()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        Descargar tarjeta de embarque
+      </ion-button>
+
+      <ion-button class="boton-ubicacion">
+        <ion-icon name="location" slot="start"></ion-icon>
+        Ver ubicacion
+      </ion-button>
+
+      <ion-item lines="none" class="switch-notificacion">
+        <ion-label>Activar notificacion</ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+       
+    </ion-card>
+
+    
+  </div>
+</ion-content>
