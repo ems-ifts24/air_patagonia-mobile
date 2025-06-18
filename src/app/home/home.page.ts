@@ -1,15 +1,43 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { 
+  IonContent, 
+  IonGrid, 
+  IonRow, 
+  IonCol, 
+  IonCard, 
+  IonCardHeader, 
+  IonCardTitle, 
+  IonCardContent, 
+  IonSearchbar,
+  IonButton,
+  IonText
+} from '@ionic/angular/standalone';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonicModule, CommonModule, RouterLink, NgIf, NgFor, FormsModule]
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    IonContent,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonSearchbar,
+    IonButton,
+    IonText
+  ]
 })
 export class HomePage {
   vuelos = [

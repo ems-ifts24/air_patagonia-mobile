@@ -12,7 +12,7 @@ export const routes: Routes = [
   
   {
     path: 'contacto',
-    loadComponent: () => import('./contacto/contacto/contacto.page').then( m => m.ContactoPage)
+    loadComponent: () => import('./contacto/contacto.page').then( m => m.ContactoPage)
   },
  
    {

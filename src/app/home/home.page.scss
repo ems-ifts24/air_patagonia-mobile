@@ -14,7 +14,7 @@
   width: 100%; // Opcional si querés que ocupe todo el ancho
   --border-radius: 8px;
   font-size: 16px;
-  max-height: 4rem; 
+  max-height: 4rem;
 }
 
 .barraBusqueda {
@@ -46,6 +46,16 @@
   color: white;
   padding: 0.5rem;
   text-align: center;
+}
+
+ion-button {
+  --border-radius: 15px;
+  --background: #0d3b6c82;
+  color: white;
+}
+
+#btnVerDetalles {
+  --background: rgba(51, 116, 185, 0.51);
 }
 
 /* Media queries opcionales */

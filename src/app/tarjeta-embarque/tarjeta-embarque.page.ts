@@ -1,14 +1,51 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
-import { IonicModule, ToastController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonContent,
+  IonCard,
+  IonCardContent,
+  IonButton,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonSpinner,
+  IonToggle,
+  ToastController
+} from '@ionic/angular/standalone';
+// Importar iconos de Ionic directamente
+const addIcons = (icons: { [key: string]: any }) => {
+};
+// Importar iconos individuales
+import { download, location, chevronBackOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tarjeta-embarque',
   standalone: true,
   templateUrl: 'tarjeta-embarque.page.html',
   styleUrls: ['./tarjeta-embarque.page.scss'],
-  imports:[RouterLink,IonicModule]
+  imports: [
+    CommonModule,
+    RouterLink,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonContent,
+    IonCard,
+    IonCardContent,
+    IonButton,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonSpinner,
+    IonToggle
+  ]
 })
 
 export class TarjetaEmbarquePage implements OnInit {
@@ -38,7 +75,12 @@ export class TarjetaEmbarquePage implements OnInit {
   horaEmbarque = '13:45';
   puertaEmbarque = '12';
 
-  constructor(private toastController: ToastController, private tarjetaService: TarjetaEmbarqueService) { }
+  constructor(
+    private tarjetaService: TarjetaEmbarqueService,
+    private toastController: ToastController
+  ) {
+    addIcons({ download, location, chevronBackOutline });
+  }
 
   ngOnInit() {
     this.generarCodigoQr(); //invoco a metodo para generar qr al cargar la pagina

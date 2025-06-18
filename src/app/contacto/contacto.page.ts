@@ -1,16 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
+import {
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonTextarea,
+  IonButton
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.page.html',
   styleUrls: ['./contacto.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, ReactiveFormsModule,RouterLink]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterLink,
+    IonContent,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonTextarea,
+    IonButton
+  ]
 })
 export class ContactoPage implements OnInit {
   formulario: FormGroup;
