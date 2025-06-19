@@ -9,31 +9,74 @@
           </ion-card-header>
 
           <ion-card-content>
-            <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" *ngIf="formulario">
+            <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" >
               <ion-item>
-                <ion-label position="floating">Código de Vuelo</ion-label>
-                <ion-input formControlName="codigoVuelo" required></ion-input>
+                <ion-label position="floating" for="codigoVuelo">Código de Vuelo</ion-label>
+                <ion-input formControlName="codigoVuelo" id="codigoVuelo" [ngClass]="{
+                'is-invalid' : tieneErrores('codigoVuelo','required')||tieneErrores('codigoVuelo','minlength')
+                }">
+                </ion-input>
               </ion-item>
+               @if(tieneErrores('codigoVuelo','required')){
+                <div>Codigo requerido</div>
+                 }
+                 @if(tieneErrores('codigoVuelo','minlength')){
+                <div >Minimo Requerido</div>
+                 } 
 
               <ion-item>
-                <ion-label position="floating">Nombre</ion-label>
-                <ion-input formControlName="nombre" required></ion-input>
+                <ion-label position="floating" for="nombre">Nombre</ion-label>
+                <ion-input formControlName="nombre" id="nombre" [ngClass]="{
+                'is-invalid' : tieneErrores('nombre','required')||tieneErrores('nombre','minlength')
+                }">
+                </ion-input>
               </ion-item>
+              @if(tieneErrores('nombre','required')){
+                <div>Nombre requerido</div>
+                 }
+                 @if(tieneErrores('nombre','minlength')){
+                <div>Ingrese nombre valido</div>
+                 } 
 
               <ion-item>
-                <ion-label position="floating">Email</ion-label>
-                <ion-input type="email" formControlName="email" required></ion-input>
+                <ion-label position="floating" for="email">Email</ion-label>
+                <ion-input type="email" formControlName="email" id="email" [ngClass]="{
+                'is-invalid' : tieneErrores('email','required')||tieneErrores('email','email')
+                }">
+
+                </ion-input>
               </ion-item>
+              @if(tieneErrores('email','required')){
+                <div>Email requerido</div>
+                 }
+                 @if(tieneErrores('email','email')){
+                <div>Ingrese mail valido</div>
+                 } 
 
              <ion-item>
-                <ion-label position="floating">Teléfono</ion-label>
-                <ion-input type="tel" formControlName="telefono" required></ion-input>
+                <ion-label position="floating" for="tel">Teléfono</ion-label>
+                <ion-input type="tel" formControlName="telefono" id="tel" [ngClass]="{
+                'is-invalid' : tieneErrores('telefono','required')||tieneErrores('telefono','minlength')||tieneErrores('telefono','pattern')
+                }">
+                </ion-input>
             </ion-item>
-
+            @if(tieneErrores('telefono','required')){
+                <div>Telefono requerido</div>
+                 }
+                 @if(tieneErrores('telefono','pattern')){
+                <div>Ingrese Numero Valido</div>
+                 } 
               <ion-item>
-                <ion-label position="floating">Mensaje</ion-label>
-                <ion-textarea formControlName="mensaje" required></ion-textarea>
+                <ion-label position="floating" for="mensaje">Mensaje</ion-label>
+                <ion-textarea formControlName="mensaje" id="mensaje" [ngClass]="{
+                'is-invalid' : tieneErrores('mensaje','required')
+                }"></ion-textarea>
               </ion-item>
+              @if(tieneErrores('mensaje','required')){
+                <div>Mensaje requerido</div>
+                 }
+
+
               <ion-button expand="block" type="submit" [disabled]="formulario.invalid" class="ion-margin-top">
                 Enviar
               </ion-button>

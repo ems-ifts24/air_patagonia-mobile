@@ -1,5 +1,6 @@
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
@@ -26,7 +27,6 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule,
     RouterLink,
     IonContent,
     IonGrid,
@@ -40,7 +40,8 @@ import {
     IonLabel,
     IonInput,
     IonTextarea,
-    IonButton
+    IonButton,
+    NgClass
   ]
 })
 export class ContactoPage implements OnInit {
@@ -48,8 +49,8 @@ export class ContactoPage implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
-      codigoVuelo: ['', Validators.required],
-      nombre: ['', Validators.required],
+      codigoVuelo: ['', [Validators.required,Validators.minLength(6)]],
+      nombre: ['', [Validators.required,Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9\-\+]{7,15}$/)]],
       mensaje: ['', Validators.required]
@@ -67,4 +68,8 @@ export class ContactoPage implements OnInit {
       alert('Por favor, completá todos los campos.');
     }
   }
+  tieneErrores(control:string, validator:string){
+ return this.formulario.get(control)?.hasError(validator)&& this.formulario.get(control)?.touched;
+}
+
 }
