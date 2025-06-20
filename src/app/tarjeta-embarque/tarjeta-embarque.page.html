@@ -49,9 +49,18 @@
 
       <ion-item lines="none" class="switch-notificacion">
         <ion-label>Activar notificacion</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle (ionChange)="onToggleNotificacion($event)"></ion-toggle>
       </ion-item>
-       
+      
+      <ion-item>
+        <ion-label position="stacked">Minutos antes</ion-label>
+        <ion-input
+        type="number"
+         [(ngModel)]="minutosAntes"
+        [disabled]="!notificacionesActivas"
+        ></ion-input>
+      </ion-item>
+
     </ion-card>
 
     
