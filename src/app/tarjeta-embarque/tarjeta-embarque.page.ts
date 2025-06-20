@@ -18,6 +18,7 @@ import {
   IonToggle,
   ToastController
 } from '@ionic/angular/standalone';
+import { UbicacionService } from 'src/app/services/ubicacion.service';
 // Importar iconos de Ionic directamente
 const addIcons = (icons: { [key: string]: any }) => {
 };
@@ -77,13 +78,15 @@ export class TarjetaEmbarquePage implements OnInit {
 
   constructor(
     private tarjetaService: TarjetaEmbarqueService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private ubicacionService: UbicacionService
   ) {
     addIcons({ download, location, chevronBackOutline });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.generarCodigoQr(); //invoco a metodo para generar qr al cargar la pagina
+    const resultado = await this.ubicacionService.obtenerUbicacion();
   }
 
   async generarCodigoQr() {
@@ -161,5 +164,8 @@ export class TarjetaEmbarquePage implements OnInit {
       cssClass: 'custom-toast',
     });
     toast.present();
+  }
+  abrirMaps() {
+    this.ubicacionService.abrirEnGoogleMaps();
   }
 }

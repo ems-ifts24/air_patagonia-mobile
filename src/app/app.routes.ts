@@ -28,4 +28,6 @@ export const routes: Routes = [
     path: '**', // Cualquier otra ruta que no coincida con las anteriores
     redirectTo: 'login' // Redirige también al login o a una página 404 si la tienes
   }
+ 
+
 ];
