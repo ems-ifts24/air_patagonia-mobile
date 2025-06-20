@@ -45,4 +45,16 @@ export class UbicacionService {
       window.open(url, '_blank');
     }
   }
+
+  abrirRutaHastaDestino(latDestino: number, lngDestino: number) {
+  if (this.latitud && this.longitud) {
+    const origen = `${this.latitud},${this.longitud}`;
+    const destino = `${latDestino},${lngDestino}`;
+    const url = `https://www.google.com/maps/dir/?api=1&origin=${origen}&destination=${destino}`;
+    window.open(url, '_blank');
+  } else {
+    alert('Ubicación actual no disponible');
+  }
+}
+
 }

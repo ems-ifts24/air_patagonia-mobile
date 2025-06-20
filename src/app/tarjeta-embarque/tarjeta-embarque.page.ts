@@ -168,4 +168,11 @@ export class TarjetaEmbarquePage implements OnInit {
   abrirMaps() {
     this.ubicacionService.abrirEnGoogleMaps();
   }
+  abrirRuta() {
+  // Coordenadas del aeropuerto de Mar del Plata (por ejemplo)
+  const latDestino = -37.9340;
+  const lngDestino = -57.5373;
+
+  this.ubicacionService.abrirRutaHastaDestino(latDestino, lngDestino);
+}
 }
