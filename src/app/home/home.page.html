@@ -1,13 +1,13 @@
 <ion-content class="ion-padding">
   <ion-grid class="paginaGrid">
-    <!--  Título -->
+    <!-- Título -->
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="8" class="ion-text-center">
         <ion-card-title id="tituloMisVuelos">Mis Vuelos</ion-card-title>
       </ion-col>
     </ion-row>
 
-    <!-- 🔍 Barra de búsqueda -->
+    <!-- Barra de búsqueda -->
     <ion-row class="ion-justify-content-center rowBusqueda">
       <ion-col size="8" size-md="6">
         <ion-searchbar
@@ -25,7 +25,7 @@
       </ion-col>
     </ion-row>
 
-    <!--  Lista de vuelos -->
+    <!-- Lista de vuelos -->
     <ion-row class="ion-justify-content-center" responsive>
       @if (vuelosFiltrados.length > 0) {
       @for (vuelo of vuelosFiltrados; track vuelo.codigo) {
@@ -48,11 +48,11 @@
               </ion-row>
             </ion-grid>
 
-            <!--  Botón Ver Detalles -->
+            <!-- Botón Ver Detalles -->
             <ion-button id="btnVerDetalles"
                 expand="block"
                 fill="solid"
-                [routerLink]="'/tarjetaEmbarque'">
+                [routerLink]="['/tarjetaEmbarque', vuelo.codigo ]">
                 Ver Detalles
               </ion-button>
           </ion-card-content>

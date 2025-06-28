@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
  
    {
-    path: 'tarjetaEmbarque',
+    path: 'tarjetaEmbarque/:codigo',
     loadComponent: () => import('./tarjeta-embarque/tarjeta-embarque.page').then( m => m.TarjetaEmbarquePage)
   },
   {
