@@ -15,24 +15,23 @@
 
       <ion-card-content>
 
-        <span class="nombre-pasajero">{{ nombrePasajero }}</span>
+        <span class="nombre-pasajero">{{ userApp?.nombre }} {{ userApp?.apellido }}</span>
 
         <div class="qr-code">
+          <!-- @if="qrDataUrl": muestra la imagen solo si qrDataUrl tiene valor -->
           @if(qrDataUrl){
             <img [src]="qrDataUrl" alt="Código QR del Pasaje">
           }
           
-          <!-- *ngIf="qrDataUrl": muestra la imagen solo si qrDataUrl tiene valor -->
+          <!-- @if="!qrDataUrl": muestra el circulo de carga si qrDataUrl no tiene valor -->
            @if(!qrDataUrl){
               <ion-spinner name="crescent"></ion-spinner> 
            }
-          
-          <!-- *ngIf="!qrDataUrl": muestra el circulo de carga si qrDataUrl no tiene valor -->
         </div>
 
         <div class="info-vuelo">
-          <span class="numero-vuelo">{{ numeroVuelo }}</span>
-          <span class="numero-asiento">{{ numeroAsiento }}</span>
+          <span class="numero-vuelo">{{ vuelo?.codigo }}</span>
+          <span class="numero-asiento">{{ vuelo?.asiento }}</span>
         </div>
 
       </ion-card-content>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   IonHeader,
   IonToolbar,
@@ -23,6 +23,8 @@ import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
 import { download, location, chevronBackOutline } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
+import { Vuelo, listaVuelos, Coordenadas, datosQR } from '../Mocks/vuelos.mock';
+import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -51,28 +53,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class TarjetaEmbarquePage implements OnInit {
   qrDataUrl?: string;
+  userApp: UserApp | undefined;
+  vuelo: Vuelo | undefined;
+  coordenadas: Coordenadas | undefined;
+  datosQR: datosQR | undefined;
 
-  // información del pasajero
-  nombrePasajero = 'Francisco Garcia';
-  dniPasajero = '12345678';
+  fechaActual = new Date(); // solo referencia
 
-  // información del vuelo
-  numeroVuelo = 'AR1234';
-  numeroAsiento = '12A';
-  clase = 'Turista';
-  fechaVuelo = new Date(); // solo referencia
-
-  // info embarque
-  horaEmbarque = '11:00';
-  puertaEmbarque = '12';
-
-  // info aeropuertos
-  aeropuertoSalida = 'BUE';
-  ciudadSalida = 'Aeroparque';
-  horaSalida = '11:45';
-  aeropuertoLlegada = 'MDQ';
-  ciudadLlegada = 'Mar del Plata';
-  horaLlegada = '17:00';
+  datosVuelo: any;
 
   // notificaciones
   minutosAntes = 1;
@@ -82,26 +70,44 @@ export class TarjetaEmbarquePage implements OnInit {
     private tarjetaService: TarjetaEmbarqueService,
     private toastController: ToastController,
     private ubicacionService: UbicacionService,
-    private notificacionService: NotificacionService
+    private notificacionService: NotificacionService,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    this.generarCodigoQr();
+    this.userApp = userFrancisco;
     await this.ubicacionService.obtenerUbicacion();
+    
+    const codigoVuelo = this.route.snapshot.paramMap.get('codigo');
+    if (codigoVuelo)
+      this.vuelo = listaVuelos.find(vuelo => vuelo.codigo === codigoVuelo);
+    else
+      console.error('Vuelo no encontrado');
+
+    this.generarCodigoQr();
   }
+
 
   async generarCodigoQr() {
     try {
-      const datos = {
-        nombrePasajero: this.nombrePasajero,
-        dniPasajero: this.dniPasajero,
-        numeroVuelo: this.numeroVuelo,
-        numeroAsiento: this.numeroAsiento,
-        clase: this.clase,
-        fechaVuelo: this.fechaVuelo
+      this.datosQR = {
+        nombrePasajero: this.userApp!.nombre + ' ' + this.userApp!.apellido,
+        dniPasajero: this.userApp!.dni,
+        numeroVuelo: this.vuelo!.codigo,
+        numeroAsiento: this.vuelo!.asiento,
+        clase: this.vuelo!.clase,
+        fechaVuelo: this.vuelo!.fechaVuelo,
+        aeropuertoSalida: this.vuelo!.aeropuertoSalida,
+        ciudadSalida: this.vuelo!.origen,
+        horaSalida: this.vuelo!.horaSalida,
+        aeropuertoLlegada: this.vuelo!.aeropuertoLlegada,
+        ciudadLlegada: this.vuelo!.destino,
+        horaLlegada: this.vuelo!.horaLlegada,
+        horaEmbarque: this.horaDeEmbarque(this.vuelo!.horaSalida, this.vuelo!.esInternacional),
+        puertaEmbarque: this.vuelo!.puertaEmbarque
       };
 
-      this.qrDataUrl = await this.tarjetaService.generarCodigoQr(datos);
+      this.qrDataUrl = await this.tarjetaService.generarCodigoQr(this.datosQR);
     } catch (error) {
       this.toast('Error al generar el código QR');
     }
@@ -114,24 +120,7 @@ export class TarjetaEmbarquePage implements OnInit {
         return;
       }
 
-      const datosVuelo = {
-        nombrePasajero: this.nombrePasajero,
-        dniPasajero: this.dniPasajero,
-        numeroVuelo: this.numeroVuelo,
-        numeroAsiento: this.numeroAsiento,
-        clase: this.clase,
-        fechaVuelo: this.fechaVuelo,
-        aeropuertoSalida: this.aeropuertoSalida,
-        ciudadSalida: this.ciudadSalida,
-        horaSalida: this.horaSalida,
-        aeropuertoLlegada: this.aeropuertoLlegada,
-        ciudadLlegada: this.ciudadLlegada,
-        horaLlegada: this.horaLlegada,
-        horaEmbarque: this.horaEmbarque,
-        puertaEmbarque: this.puertaEmbarque
-      };
-
-      const { base64, nombreArchivo } = await this.tarjetaService.generarPdfTarjetaEmbarque(datosVuelo, this.qrDataUrl);
+      const { base64, nombreArchivo } = await this.tarjetaService.generarPdfTarjetaEmbarque(this.datosQR, this.qrDataUrl);
       await this.tarjetaService.descargarTarjeta(base64, nombreArchivo);
       this.toast('Descarga exitosa');
     } catch (error: any) {
@@ -164,7 +153,7 @@ export class TarjetaEmbarquePage implements OnInit {
     this.notificacionesActivas = event.detail.checked;
 
     if (this.notificacionesActivas) {
-      const mensaje = `Tu vuelo ${this.numeroVuelo} embarca pronto.`;
+      const mensaje = `Tu vuelo ${this.vuelo?.codigo} embarca pronto.`;
       const fechaSimulada = this.fechaDePrueba(3); // Notifica como si el vuelo fuera dentro de 3 minutos
 
       const permiso = await this.notificacionService.solicitarPermisos();
@@ -210,4 +199,13 @@ export class TarjetaEmbarquePage implements OnInit {
 //   }
 // }
 
+  private horaDeEmbarque(horaSalida: Date, esInternacional: boolean): Date {
+    const embarque = new Date();
+    if (esInternacional) {
+      embarque.setHours(horaSalida.getHours() - 3);
+    } else {
+      embarque.setHours(horaSalida.getHours() - 1.5);
+    }
+    return embarque;
+  }
 }
