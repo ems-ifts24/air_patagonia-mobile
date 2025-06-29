@@ -23,8 +23,12 @@ import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
 import { download, location, chevronBackOutline } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
-import { Vuelo, listaVuelos, Coordenadas, datosQR } from '../Mocks/vuelos.mock';
-import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
+import { listaVuelos } from '../Mocks/vuelos.mock';
+import { userFrancisco } from '../Mocks/userApp.mock';
+import { Coordenadas } from '../models/coordenadas.mode';
+import { datosQR } from '../models/datosQr.model';
+import { UserApp } from '../models/userApp.model';
+import { Vuelo } from '../models/vuelos.model';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -92,7 +96,7 @@ export class TarjetaEmbarquePage implements OnInit {
     try {
       this.datosQR = {
         nombrePasajero: this.userApp!.nombre + ' ' + this.userApp!.apellido,
-        dniPasajero: this.userApp!.dni,
+        dniPasajero: this.userApp!.credenciales.dni.toString(),
         numeroVuelo: this.vuelo!.codigo,
         numeroAsiento: this.vuelo!.asiento,
         clase: this.vuelo!.clase,

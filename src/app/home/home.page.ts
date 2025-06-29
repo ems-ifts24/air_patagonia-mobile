@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { listaVuelos, Vuelo } from '../Mocks/vuelos.mock';
+import { listaVuelos } from '../Mocks/vuelos.mock';
+import { Vuelo } from '../models/vuelos.model';
 import { 
   IonContent, 
   IonGrid, 
