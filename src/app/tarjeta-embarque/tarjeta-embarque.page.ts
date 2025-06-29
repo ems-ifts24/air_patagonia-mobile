@@ -2,23 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import {
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonContent,
-  IonCard,
-  IonCardContent,
-  IonButton,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonSpinner,
-  IonToggle,
-  ToastController,
-  IonInput,
-} from '@ionic/angular/standalone';
 import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
 import { download, location, chevronBackOutline } from 'ionicons/icons';
@@ -29,6 +12,8 @@ import { Coordenadas } from '../models/coordenadas.mode';
 import { datosQR } from '../models/datosQr.model';
 import { UserApp } from '../models/userApp.model';
 import { Vuelo } from '../models/vuelos.model';
+import { SharedModule } from '../shared/shared.module';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -38,21 +23,8 @@ import { Vuelo } from '../models/vuelos.model';
   imports: [
     CommonModule,
     RouterLink,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonBackButton,
-    IonContent,
-    IonCard,
-    IonCardContent,
-    IonButton,
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonSpinner,
-    IonToggle,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class TarjetaEmbarquePage implements OnInit {

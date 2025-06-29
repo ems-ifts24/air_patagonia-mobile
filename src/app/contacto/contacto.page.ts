@@ -3,21 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import {
-  IonContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonTextarea,
-  IonButton
-} from '@ionic/angular/standalone';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-contacto',
@@ -28,19 +14,7 @@ import {
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    IonContent,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonTextarea,
-    IonButton,
+    SharedModule,
     NgClass
   ]
 })

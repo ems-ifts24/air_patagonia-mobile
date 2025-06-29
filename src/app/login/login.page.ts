@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonItem, IonLabel, IonInput, IonButton, IonText, ToastController } from '@ionic/angular/standalone';
 import { LoginService } from '../services/login.service';
 import { Credenciales } from '../models/userApp.model';
+import { SharedModule } from '../shared/shared.module';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,7 @@ import { Credenciales } from '../models/userApp.model';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    IonContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonButton,
-    IonText
+    SharedModule
   ]
 })
 
