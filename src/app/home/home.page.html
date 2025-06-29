@@ -14,8 +14,7 @@
 
     <!-- Barra de búsqueda -->
     <ion-row class="ion-justify-content-center rowBusqueda">
-      <!-- <ion-col size="8" size-md="6"> -->
-        <ion-col size="12" size-md="6">
+      <ion-col size="12" size-md="6">
         <ion-searchbar
         placeholder="Buscar vuelo"
         [(ngModel)]="terminoBusqueda"
@@ -24,11 +23,6 @@
         class="barraBusqueda">
       </ion-searchbar>
       </ion-col>
-      <!-- <ion-col size="4" size-md="6">
-        <ion-button [routerLink]="['/contacto']" id="btnContacto">
-          Contacto
-        </ion-button>
-      </ion-col> -->
     </ion-row>
 
     <!-- Lista de vuelos -->
@@ -52,12 +46,12 @@
                 </ion-col>
                 @if($index === 0 && !esEmbarcado(vuelo)){
                   <ion-col size="12">
-                    <div class="labelInfo" color="success">Embarca en: {{ cuentaRegresiva(vuelo) || 'Calculando...' }}</div>
+                    <div class="labelInfo">Embarca en: {{ cuentaRegresiva(vuelo) }}</div>
                   </ion-col>
                 }
                 @if($index === 0 && esEmbarcado(vuelo)){
                   <ion-col size="12">
-                    <div class="labelInfo" color="danger">Embarcado</div>
+                    <div class="labelInfo">Embarcado</div>
                   </ion-col>
                 }
             </ion-grid>

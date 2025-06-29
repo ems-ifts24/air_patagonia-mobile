@@ -42,9 +42,9 @@
 }
 
 .labelInfo {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: white;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   text-align: center;
 }
 
@@ -84,9 +84,5 @@ ion-button {
 @media (max-width: 768px) {
   #tituloMisVuelos {
     font-size: 1.8rem;
-  }
-
-  .labelInfo {
-    font-size: 1.1rem;
   }
 }

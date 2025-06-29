@@ -301,13 +301,9 @@ export class TarjetaEmbarqueService {
   }
 
 
-  horaDeEmbarque(horaSalida: Date, esInternacional: boolean): Date {
-    const embarque = new Date();
-    if (esInternacional) {
-      embarque.setHours(horaSalida.getHours() - 3);
-    } else {
-      embarque.setHours(horaSalida.getHours() - 1.5);
-    }
-    return embarque;
+  horaDeEmbarque(fechaSalida: Date, esInternacional: boolean): Date {
+    // resta 3 horas si es internacional, 1.5 si es nacional pero en milisegundos
+    const offsetMs = (esInternacional ? 3 : 1.5) * 60 * 60 * 1000;
+    return new Date(fechaSalida.getTime() - offsetMs); // resta el offset a la fecha de salida
   }
 }

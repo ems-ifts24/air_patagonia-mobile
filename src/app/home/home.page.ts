@@ -70,21 +70,32 @@ export class HomePage {
   }
 
 
+  // ---------------------------------------
+  // Actualización del tiempo
+  // ---------------------------------------
   private iniciarActualizacionTiempo() {
-    // Inicia un intervalo que se ejecuta cada segundo
+    // Sigue actualizando cada 1 segundo
     this.intervalo = setInterval(() => {
-      const ahora = new Date();
-
-      const vuelo = this.vuelosFiltrados[0];
-      if (!vuelo) return;
-
-      // Si el vuelo no ha comenzado, actualiza la cuenta regresiva
-      if (vuelo.fechaVuelo.getTime() > ahora.getTime()) {
-        this.cuentaRegresiva(vuelo);
-      }
+      this.actualizarTiempo();
     }, 1000);
   }
 
+  private actualizarTiempo() {
+    const ahora = new Date();
+    const vuelo = this.vuelosFiltrados[0];
+    
+    if (!vuelo) return;
+    
+    // Forzar la detección de cambios
+    setTimeout(() => {
+      // Esto forzará a Angular a detectar cambios
+      this.cuentaRegresiva(vuelo);
+    }, 0);
+  }
+
+  // ---------------------------------------
+  // Detener actualización del tiempo
+  // ---------------------------------------
   private detenerActualizacionTiempo() {
     // Si el intervalo existe, lo detiene
     if (this.intervalo) {
@@ -92,6 +103,9 @@ export class HomePage {
     }
   }
 
+  // ---------------------------------------
+  // Validaciones si aún falta para embarcar
+  // ---------------------------------------
   esEmbarcado(vuelo: Vuelo): boolean {
     const ahora = new Date();
     // Obtiene la hora de embarque del vuelo para asegurarse que el pasajero llegue al aeropuerto con tiempo
@@ -99,6 +113,9 @@ export class HomePage {
     return horaEmbarque.getTime() <= ahora.getTime();
   }
 
+  // ---------------------------------------
+  // Cuenta regresiva
+  // ---------------------------------------
   cuentaRegresiva(vuelo: Vuelo): string {
     const ahora = new Date();
     // Obtiene la hora de embarque del vuelo para asegurarse que el pasajero llegue al aeropuerto con tiempo
