@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonItem, IonLabel, IonInput, IonButton, IonText, ToastController } from '@ionic/angular/standalone';
+import { IonContent, IonItem, IonInput, IonButton, IonText, ToastController, IonNote, IonInputPasswordToggle } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +14,11 @@ import { IonContent, IonItem, IonLabel, IonInput, IonButton, IonText, ToastContr
     CommonModule,
     IonContent,
     IonItem,
-    IonLabel,
     IonInput,
     IonButton,
-    IonText
+    IonText,
+    IonNote,
+    IonInputPasswordToggle
   ]
 })
 
@@ -42,6 +43,30 @@ export class LoginPage implements OnInit {
   }
 
   // toma y setea los valores ingresados en los inputs
+  // Función para validar que solo se ingresen números
+  soloNumeros(event: KeyboardEvent) {
+    const pattern = /[0-9]/;
+    const inputChar = String.fromCharCode(event.keyCode || event.which);
+    
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+      this.mostrarError('Solo se permiten números');
+      return false;
+    }
+    return true;
+  }
+
+  // Muestra un mensaje de error
+  async mostrarError(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'bottom',
+      color: 'danger'
+    });
+    await toast.present();
+  }
+
   ngOnInit(): void {
     this.formulario.get('dni')?.valueChanges.subscribe((value) => {
       this.dni = value;
