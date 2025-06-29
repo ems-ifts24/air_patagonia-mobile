@@ -13,9 +13,14 @@ export class LoginService {
   constructor() { }
 
   async iniciarCredencialesPorDefecto() {
-    const { value } = await Preferences.get({ key: this.STORAGE_KEY });
+
+    // verifico si ya existen credenciales guardadas
+    const respuesta = await Preferences.get({ key: this.STORAGE_KEY });
+    const value = respuesta.value;
 
     if (!value) {
+
+      // guardo las credenciales por defecto
       await Preferences.set({ key: this.STORAGE_KEY, value: JSON.stringify(credencialesFrancisco) });
     }
   }
@@ -26,6 +31,7 @@ export class LoginService {
 
     if (!value) return false;
 
+    // valido las credenciales guardadas con las ingresadas
     const credGuardadas: Credenciales = JSON.parse(value);
     return (
       credenciales.dni === credGuardadas.dni &&

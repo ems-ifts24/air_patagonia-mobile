@@ -6,7 +6,6 @@ export interface Credenciales {
 export interface UserApp {
     nombre: string;
     apellido: string;
-    // dni: string;
     telefono: string;
     email: string;
     credenciales: Credenciales;
