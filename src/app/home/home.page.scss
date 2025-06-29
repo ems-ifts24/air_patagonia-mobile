@@ -58,6 +58,28 @@ ion-button {
   --background: rgba(51, 116, 185, 0.51);
 }
 
+/* boton flotante de contacto */
+.floating-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: #316cab;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  span {
+    font-size: 30px;
+    /* centrado vertical */
+    transform: translateY(-1px); 
+  }
+}
+
 /* Media queries opcionales */
 @media (max-width: 768px) {
   #tituloMisVuelos {

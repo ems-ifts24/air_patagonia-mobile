@@ -1,4 +1,9 @@
 <ion-content class="ion-padding">
+  <!-- boton flotante de contacto -->
+  <div class="floating-button-container" [routerLink]="['/contacto']">
+    <span>✉️</span>
+  </div>
+
   <ion-grid class="paginaGrid">
     <!-- Título -->
     <ion-row class="ion-justify-content-center">
@@ -9,7 +14,8 @@
 
     <!-- Barra de búsqueda -->
     <ion-row class="ion-justify-content-center rowBusqueda">
-      <ion-col size="8" size-md="6">
+      <!-- <ion-col size="8" size-md="6"> -->
+        <ion-col size="12" size-md="6">
         <ion-searchbar
         placeholder="Buscar vuelo"
         [(ngModel)]="terminoBusqueda"
@@ -18,11 +24,11 @@
         class="barraBusqueda">
       </ion-searchbar>
       </ion-col>
-      <ion-col size="4" size-md="6">
+      <!-- <ion-col size="4" size-md="6">
         <ion-button [routerLink]="['/contacto']" id="btnContacto">
           Contacto
         </ion-button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
 
     <!-- Lista de vuelos -->
