@@ -28,7 +28,7 @@
     <!-- Lista de vuelos -->
     <ion-row class="ion-justify-content-center" responsive>
       @if (vuelosFiltrados.length > 0) {
-      @for (vuelo of vuelosFiltrados; track vuelo.codigo) {
+      @for (vuelo of vuelosFiltrados; track $index) {
       <!-- Responsive: 12 col en mobile, 6 en tablet, 4 en desktop -->
       <ion-col size="12" size-sm="6" size-md="4">
         <ion-card class="contenedorVuelos">
@@ -38,14 +38,22 @@
 
           <ion-card-content class="cardVuelos">
             <ion-grid>
-              <ion-row>
                 <ion-col size="12">
-                  <div class="labelInfo">Origen: {{ vuelo.origen }}</div>
+                  <div class="labelInfo">Origen: {{ vuelo.origen }} ({{ vuelo.aeropuertoSalida }})</div>
                 </ion-col>
                 <ion-col size="12">
-                  <div class="labelInfo">Destino: {{ vuelo.destino }}</div>
+                  <div class="labelInfo">Destino: {{ vuelo.destino }} ({{ vuelo.aeropuertoLlegada }})</div>
                 </ion-col>
-              </ion-row>
+                @if($index === 0 && !esEmbarcado(vuelo)){
+                  <ion-col size="12">
+                    <div class="labelInfo" color="success">Embarca en: {{ cuentaRegresiva(vuelo) || 'Calculando...' }}</div>
+                  </ion-col>
+                }
+                @if($index === 0 && esEmbarcado(vuelo)){
+                  <ion-col size="12">
+                    <div class="labelInfo" color="danger">Embarcado</div>
+                  </ion-col>
+                }
             </ion-grid>
 
             <!-- Botón Ver Detalles -->

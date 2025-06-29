@@ -298,6 +298,16 @@ export class TarjetaEmbarqueService {
       console.error('Error al descargar la tarjeta:', error);
       throw error;
     }
+  }
 
+
+  horaDeEmbarque(horaSalida: Date, esInternacional: boolean): Date {
+    const embarque = new Date();
+    if (esInternacional) {
+      embarque.setHours(horaSalida.getHours() - 3);
+    } else {
+      embarque.setHours(horaSalida.getHours() - 1.5);
+    }
+    return embarque;
   }
 }

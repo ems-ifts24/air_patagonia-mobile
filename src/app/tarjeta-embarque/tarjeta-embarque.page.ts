@@ -112,7 +112,7 @@ export class TarjetaEmbarquePage implements OnInit {
         aeropuertoLlegada: this.vuelo!.aeropuertoLlegada,
         ciudadLlegada: this.vuelo!.destino,
         horaLlegada: this.vuelo!.horaLlegada,
-        horaEmbarque: this.horaDeEmbarque(this.vuelo!.horaSalida, this.vuelo!.esInternacional),
+        horaEmbarque: this.tarjetaService.horaDeEmbarque(this.vuelo!.horaSalida, this.vuelo!.esInternacional),
         puertaEmbarque: this.vuelo!.puertaEmbarque
       };
 
@@ -187,13 +187,4 @@ export class TarjetaEmbarquePage implements OnInit {
     return ahora;
   }
 
-  private horaDeEmbarque(horaSalida: Date, esInternacional: boolean): Date {
-    const embarque = new Date();
-    if (esInternacional) {
-      embarque.setHours(horaSalida.getHours() - 3);
-    } else {
-      embarque.setHours(horaSalida.getHours() - 1.5);
-    }
-    return embarque;
-  }
 }
