@@ -3,6 +3,8 @@ ion-button.boton-descarga,
 ion-button.boton-ubicacion {
     --background: #1c3e65;
     --border-radius: 0.9375rem;
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
     --padding-top: 1.1rem;
     --padding-bottom: 1.1rem;
     font-weight: 500;
@@ -17,6 +19,12 @@ ion-button.boton-ubicacion {
     --box-shadow: none;
 }
 
+ion-icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-top: -2px;
+}
 // boton volver
 ion-back-button {
     --color: #ffffff;

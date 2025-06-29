@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Geolocation, Position } from '@capacitor/geolocation';
+import { Coordenadas } from '../Mocks/vuelos.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -39,20 +40,13 @@ export class UbicacionService {
     return '';
   }
 
-  abrirEnGoogleMaps() {
+  abrirRutaHastaDestino(coordenadas: Coordenadas) {
     if (this.latitud && this.longitud) {
-      const url = `https://www.google.com/maps/search/?api=1&query=${this.latitud},${this.longitud}`;
+      const origen = `${this.latitud},${this.longitud}`;
+      const destino = `${coordenadas.latitud},${coordenadas.longitud}`;
+      const url = `https://www.google.com/maps/dir/?api=1&origin=${origen}&destination=${destino}`;
       window.open(url, '_blank');
-    }
-  }
-
-  abrirRutaHastaDestino(latDestino: number, lngDestino: number) {
-  if (this.latitud && this.longitud) {
-    const origen = `${this.latitud},${this.longitud}`;
-    const destino = `${latDestino},${lngDestino}`;
-    const url = `https://www.google.com/maps/dir/?api=1&origin=${origen}&destination=${destino}`;
-    window.open(url, '_blank');
-  } else {
+    } else {
     alert('Ubicación actual no disponible');
   }
 }

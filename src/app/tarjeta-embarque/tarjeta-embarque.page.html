@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button [routerLink]="'/home'" icon="chevron-back-outline" text=""></ion-back-button>
+      <ion-back-button [routerLink]="'/home'" icon="chevron-back-outline" text="Volver"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -38,12 +38,12 @@
 
       <ion-button class="boton-descarga" (click)="descargarTarjetaEmbarque()">
         <ion-icon name="download" slot="start"></ion-icon>
-        Descargar tarjeta de embarque
+        <ion-text>Tarjeta de embarque</ion-text>
       </ion-button>
 
-        <ion-button class="boton-ubicacion" (click)="abrirRuta()">
+      <ion-button class="boton-ubicacion" (click)="abrirRuta(vuelo!.aeropuertoSalida)">
         <ion-icon name="location" slot="start"></ion-icon>
-        Ver ubicacion Aeropuerto
+        <ion-text>Ubicacion Aeropuerto</ion-text>
       </ion-button>
 
       <ion-item lines="none" class="switch-notificacion">

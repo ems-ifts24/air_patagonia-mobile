@@ -23,8 +23,10 @@ import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
 import { download, location, chevronBackOutline } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
-import { Vuelo, listaVuelos, Coordenadas, datosQR } from '../Mocks/vuelos.mock';
+import { Vuelo, listaVuelos, Coordenadas, datosQR, coordenadasAEP, coordenadasEZE } from '../Mocks/vuelos.mock';
 import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
+import { addIcons } from 'ionicons';
+import { IonText } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -48,6 +50,7 @@ import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
     IonInput,
     IonSpinner,
     IonToggle,
+    IonText,
     FormsModule
   ]
 })
@@ -72,7 +75,13 @@ export class TarjetaEmbarquePage implements OnInit {
     private ubicacionService: UbicacionService,
     private notificacionService: NotificacionService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    addIcons({
+      'download': download,
+      'location': location,
+      'chevronBackOutline': chevronBackOutline,
+    });
+  }
 
   async ngOnInit() {
     this.userApp = userFrancisco;
@@ -139,14 +148,10 @@ export class TarjetaEmbarquePage implements OnInit {
     toast.present();
   }
 
-  abrirMaps() {
-    this.ubicacionService.abrirEnGoogleMaps();
-  }
-
-  abrirRuta() {
-    const latDestino = -37.9340;
-    const lngDestino = -57.5373;
-    this.ubicacionService.abrirRutaHastaDestino(latDestino, lngDestino);
+  abrirRuta(aeropuerto: string) {
+    // Según el parametro aeropuerto (por ahora solo 'AEP' o 'EZE'), se cargan sus coordenadas y se abre la ruta para llegar al mismo.
+    const aeropuertoPartida = aeropuerto == 'AEP' ? coordenadasAEP : coordenadasEZE;
+    this.ubicacionService.abrirRutaHastaDestino(aeropuertoPartida);
   }
 
   async onToggleNotificacion(event: any) {
@@ -181,23 +186,6 @@ export class TarjetaEmbarquePage implements OnInit {
     ahora.setMinutes(ahora.getMinutes() + minutosDesdeAhora);
     return ahora;
   }
- 
-//   async onMinutosAntesChange() {
-//   if (this.notificacionesActivas) {
-//     await this.notificacionService.cancelarNotificaciones();
-
-//     const mensaje = `Tu vuelo ${this.numeroVuelo} embarca pronto.`;
-//     const fechaSimulada = this.fechaDePrueba(3); // misma lógica de prueba
-
-//     await this.notificacionService.programarNotificacion(
-//       mensaje,
-//       fechaSimulada,
-//       this.minutosAntes
-//     );
-
-//     this.toast('Tiempo de notificación actualizado');
-//   }
-// }
 
   private horaDeEmbarque(horaSalida: Date, esInternacional: boolean): Date {
     const embarque = new Date();
