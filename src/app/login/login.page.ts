@@ -25,15 +25,13 @@ import { IonContent, IonItem, IonInput, IonButton, IonText, ToastController, Ion
 export class LoginPage implements OnInit {
 
   formulario: FormGroup;
-  dni: number = 0;
+  dni: string = '';
   password: string = '';
 
   constructor(private router: Router, private fb: FormBuilder, private toastController: ToastController) {
     this.formulario = this.fb.group({
       dni: [null, [
-        Validators.required, 
-        Validators.min(10000000), 
-        Validators.max(99999999)
+        Validators.required
       ]],
       password: ['', [
         Validators.required, 
@@ -69,19 +67,19 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {
     this.formulario.get('dni')?.valueChanges.subscribe((value) => {
-      this.dni = value;
+      this.dni = value.toString();
     });
     this.formulario.get('password')?.valueChanges.subscribe((value) => {
-      this.password = value;
+      this.password = value.toString();
     });
   }
 
   login() {
 
-    const dniIngresado = this.formulario.value.dni;
-    const passIngresada = this.formulario.value.password;
+    const dniIngresado = this.formulario.value.dni.toString();
+    const passIngresada = this.formulario.value.password.toString();
   
-    const dniCorrecto = 12345678;
+    const dniCorrecto = '12345678';
     const passCorrecta = '12345678';
   
     if (dniIngresado === dniCorrecto && passIngresada === passCorrecta) {
