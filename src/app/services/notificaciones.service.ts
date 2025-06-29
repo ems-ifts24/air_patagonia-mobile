@@ -16,18 +16,14 @@ export class NotificacionService {
     return status.display === 'granted';
   }
 
-  async programarNotificacion(
-    mensaje: string,
-    fechaVuelo: Date,
-    minutosAntes: number
-  ) {
+  async programarNotificacion(mensaje: string, fechaDeAviso: Date) {
     const permiso = await this.solicitarPermisos();
     if (!permiso) {
       console.warn('Permiso para notificaciones no otorgado');
       return;
     }
 
-    const tiempoAlerta = new Date(fechaVuelo.getTime() - minutosAntes * 60000);
+    const tiempoAlerta = new Date(fechaDeAviso.getTime());
 
     const notificacion: ScheduleOptions = {
       notifications: [

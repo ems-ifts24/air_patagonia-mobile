@@ -46,22 +46,35 @@
         <ion-text>Ubicacion Aeropuerto</ion-text>
       </ion-button>
 
-      <ion-item lines="none" class="switch-notificacion">
-        <ion-label>Activar notificacion</ion-label>
-        <ion-toggle (ionChange)="onToggleNotificacion($event)"></ion-toggle>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label position="stacked">Minutos antes</ion-label>
-        <ion-input
-        type="number"
-         [(ngModel)]="minutosAntes"
-        [disabled]="!notificacionesActivas"
-        ></ion-input>
-      </ion-item>
-
+      <ion-item-group class="ion-margin-vertical">
+        <ion-item lines="none" class="switch-notificacion">
+          <ion-toggle
+            [(ngModel)]="notificacionesActivas"
+            (ionChange)="onToggleNotificacion($event)"
+            justify="space-between"
+            color="primary">
+            <ion-label class="ion-text-wrap">
+              <h3>Activar Notificación</h3>
+                <p [ngClass]="notificacionesActivas ? 'notificacion-activada' : 'notificacion-desactivada'">
+                  {{ notificacionesActivas ? 'Programada' : 'Desactivada' }}
+                </p>
+            </ion-label>
+          </ion-toggle>
+        </ion-item>
+        @if(notificacionesActivas){
+          <ion-item>
+            <ion-label>
+              Cuando:
+            </ion-label>
+            <ion-datetime-button datetime="datetime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime locale="es-AR" hourCycle="h23" id="datetime"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        }
+      </ion-item-group>
     </ion-card>
-
-    
   </div>
 </ion-content>

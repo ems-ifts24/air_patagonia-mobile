@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 import {
   IonHeader,
   IonToolbar,
@@ -13,20 +14,21 @@ import {
   IonButton,
   IonIcon,
   IonItem,
+  IonItemGroup,
   IonLabel,
   IonSpinner,
   IonToggle,
   ToastController,
-  IonInput,
 } from '@ionic/angular/standalone';
+import { download, location, chevronBackOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { IonText, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/angular/standalone';
+
+import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
 import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
-import { download, location, chevronBackOutline } from 'ionicons/icons';
-import { FormsModule } from '@angular/forms';
-import { Vuelo, listaVuelos, Coordenadas, datosQR, coordenadasAEP, coordenadasEZE } from '../Mocks/vuelos.mock';
+import { Vuelo, listaVuelos, Coordenadas, datosQR, coordenadasAEP, coordenadasEZE, NotificacionVuelo, listaNotificaciones } from '../Mocks/vuelos.mock';
 import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
-import { addIcons } from 'ionicons';
-import { IonText } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -46,12 +48,15 @@ import { IonText } from '@ionic/angular/standalone';
     IonButton,
     IonIcon,
     IonItem,
+    IonItemGroup,
     IonLabel,
-    IonInput,
     IonSpinner,
     IonToggle,
     IonText,
-    FormsModule
+    FormsModule,
+    IonDatetime,
+    IonDatetimeButton,
+    IonModal
   ]
 })
 export class TarjetaEmbarquePage implements OnInit {
@@ -60,10 +65,9 @@ export class TarjetaEmbarquePage implements OnInit {
   vuelo: Vuelo | undefined;
   coordenadas: Coordenadas | undefined;
   datosQR: datosQR | undefined;
+  notificacion: NotificacionVuelo | undefined;
 
   fechaActual = new Date(); // solo referencia
-
-  datosVuelo: any;
 
   // notificaciones
   minutosAntes = 1;
@@ -94,6 +98,7 @@ export class TarjetaEmbarquePage implements OnInit {
       console.error('Vuelo no encontrado');
 
     this.generarCodigoQr();
+    this.notificacion = listaNotificaciones.find(notificacion => notificacion.codigoVuelo === this.vuelo?.codigo);
   }
 
 
@@ -158,17 +163,12 @@ export class TarjetaEmbarquePage implements OnInit {
     this.notificacionesActivas = event.detail.checked;
 
     if (this.notificacionesActivas) {
-      const mensaje = `Tu vuelo ${this.vuelo?.codigo} embarca pronto.`;
-      const fechaSimulada = this.fechaDePrueba(3); // Notifica como si el vuelo fuera dentro de 3 minutos
-
+      const mensaje = `Recordatorio: Tu vuelo ${this.vuelo?.codigo} embarca pronto.`;
+      
       const permiso = await this.notificacionService.solicitarPermisos();
 
       if (permiso) {
-        await this.notificacionService.programarNotificacion(
-          mensaje,
-          fechaSimulada,
-          this.minutosAntes
-        );
+        await this.notificacionService.programarNotificacion(mensaje, this.fechaActual);
         this.toast('Notificación activada');
       } else {
         this.toast('No otorgaste permisos para notificaciones');

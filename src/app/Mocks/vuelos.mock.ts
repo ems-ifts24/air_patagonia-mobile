@@ -33,6 +33,28 @@ export const listaVuelos: Vuelo[] = [
     }
 ];
 
+
+export interface NotificacionVuelo {
+    codigoVuelo: string;
+    fechaNotificacion: Date;
+}
+
+export const listaNotificaciones: NotificacionVuelo[] = [
+    {
+        codigoVuelo: 'AR1234', fechaNotificacion: new Date('2025-07-02T11:45')
+    },
+    {
+        codigoVuelo: 'AR1235', fechaNotificacion: new Date('2025-09-07T09:30')
+    },
+    {
+        codigoVuelo: 'AR1236', fechaNotificacion: new Date('2025-08-15T10:00')
+    },
+    {
+        codigoVuelo: 'AR1237', fechaNotificacion: new Date('2025-10-15T12:00')
+    }
+];
+
+
 export interface Coordenadas {
     latitud: number;
     longitud: number;
