@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as QRCode from 'qrcode';
 import { Filesystem, Directory } from '@capacitor/filesystem'; //plugin para guardar archivos
+import { FileOpener } from '@capawesome-team/capacitor-file-opener'; //plugin para abrir el pdf
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
@@ -274,56 +275,23 @@ export class TarjetaEmbarqueService {
     });
   }
 
-  // async verificarPermisos(): Promise<boolean> {
-
-  //   try {
-
-  //     // consulto permisos actuales
-  //     const estadoPermiso = await Filesystem.checkPermissions();
-
-  //     if (estadoPermiso.publicStorage === 'granted') {
-  //       return true;
-  //     }
-
-  //     // si no los tiene, los solicita
-  //     const solicitudPermiso = await Filesystem.requestPermissions();
-  //     return solicitudPermiso.publicStorage === 'granted';
-
-  //   } catch (error) {
-  //     console.error('Error al verificar permisos:', error);
-  //     return false;
-  //   }
-
-  // }
-
   async descargarTarjeta(base64: string, nombreArchivo: string): Promise<void> {
 
     try {
-
-      // no se verifica permisos porque se guarda en un directorio privado de la app
-      // const tienePermiso = await this.verificarPermisos();
-
-      // if (!tienePermiso) {
-      //   throw new Error('Permiso de almacenamiento denegado');
-      // }
-
-      // creo directorio si no existe, uso try catch para que no lance error si ya existe
-      try {
-        await Filesystem.mkdir({
-          path: 'AirPatagonia',
-          directory: Directory.Documents,
-          recursive: true
-        });
-      } catch (e) {
-        console.log('El directorio ya existe o no se pudo crear');
-      }
-
-      // guardo el archivo en el directorio Documents/AirPatagonia
+      
+      // crea el pdf en el directorio privado de la app
       const result = await Filesystem.writeFile({
-        path: `AirPatagonia/${nombreArchivo}`,
+        path: nombreArchivo,
         data: base64,
-        directory: Directory.Documents,
-        recursive: true
+        directory: Directory.Data,
+        // directory: Directory.Documents,
+
+      });
+
+      // abre el pdf en la app
+      await FileOpener.openFile({
+        path: result.uri, 
+        mimeType: 'application/pdf',
       });
 
     } catch (error) {
