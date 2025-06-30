@@ -75,14 +75,15 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.loginService.iniciarCredencialesPorDefecto();
+    this.loginService.reinicioCredencialesPorDefecto();
 
     this.formulario.get('dni')?.valueChanges.subscribe((value) => {
       this.dni = value.toString();
+      
     });
     this.formulario.get('password')?.valueChanges.subscribe((value) => {
       this.password = value.toString();
+      
     });
     
   }

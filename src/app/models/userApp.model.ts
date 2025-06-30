@@ -1,5 +1,5 @@
 export interface Credenciales {
-    dni: number;
+    dni: string;
     contrasenia: string;
 }
 

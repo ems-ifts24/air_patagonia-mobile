@@ -1,7 +1,7 @@
 import { Credenciales, UserApp } from "../models/userApp.model";
  
 export const credencialesFrancisco: Credenciales = {
-    dni: 12345678,
+    dni: '12345678',
     contrasenia: 'user'
 }
 

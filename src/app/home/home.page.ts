@@ -2,20 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { 
-  IonContent, 
-  IonGrid, 
-  IonRow, 
-  IonCol, 
-  IonCard, 
-  IonCardHeader, 
-  IonCardTitle, 
-  IonCardContent, 
-  IonSearchbar,
-  IonButton,
-  IonText
-} from '@ionic/angular/standalone';
-
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
 import { listaVuelos } from '../Mocks/vuelos.mock';
 import { Vuelo } from '../models/vuelos.model';

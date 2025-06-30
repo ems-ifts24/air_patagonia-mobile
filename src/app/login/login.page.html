@@ -9,11 +9,7 @@
     <ion-item>
       <ion-input type="text" pattern="[0-9]*" placeholder="DNI" formControlName="dni" (keypress)="soloNumeros($event)" maxlength="8"></ion-input>
     </ion-item>
-    @if(formulario.get('dni')?.errors?.['pattern']){
-      <ion-note color="danger" class="ion-padding-start">
-        Solo se permiten números
-      </ion-note> 
-    }
+    
     <ion-item>
       <ion-input type="password" placeholder="Contraseña" formControlName="password">
         <ion-input-password-toggle slot="end"></ion-input-password-toggle>
@@ -23,6 +19,11 @@
     <ion-button expand="block" class="ion-margin-top" type="submit">
       Iniciar sesión
     </ion-button>
+     @if(formulario.get('dni')?.errors?.['pattern']){
+      <ion-note color="danger" class="ion-padding-start ion-text-center ion-margin-top">
+        Solo se permiten números
+      </ion-note> 
+    }
   </form>
 
   <div class="ion-text-center ion-margin-top">

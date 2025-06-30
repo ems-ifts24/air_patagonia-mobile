@@ -11,6 +11,14 @@ export class LoginService {
   private STORAGE_KEY = 'credenciales';
 
   constructor() { }
+  
+ async reinicioCredencialesPorDefecto() {//agregado
+    await Preferences.set({
+      key: this.STORAGE_KEY,
+      value: JSON.stringify(credencialesFrancisco)
+    });
+  }
+
 
   async iniciarCredencialesPorDefecto() {
 
@@ -37,5 +45,6 @@ export class LoginService {
       credenciales.dni === credGuardadas.dni &&
       credenciales.contrasenia === credGuardadas.contrasenia
     );
+    
   }
 }

@@ -29,6 +29,7 @@ ion-icon {
 ion-back-button {
     --color: #ffffff;
     margin-left: 0.75rem;
+    margin-top: 3rem;
 }
 
 // estilos barra superior
@@ -43,6 +44,9 @@ ion-content {
     ;
 }
 
+h3{
+    color: white;
+}
 .qr-container {
     max-width: 100%;
     width: 100%;
@@ -131,5 +135,5 @@ ion-card-content {
 }
 
 .notificacion-desactivada {
-    color: chocolate;
+    color: white;
 }
