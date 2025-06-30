@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button [routerLink]="'/home'" icon="chevron-back-outline" text="Volver"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="qr-container">
+
+    <h2>Código QR <br>del Pasaje</h2>
+
+    <ion-card class="qr-card">
+
+      <ion-card-content>
+
+        <span class="nombre-pasajero">{{ userApp?.nombre }} {{ userApp?.apellido }}</span>
+
+        <div class="qr-code">
+          <!-- @if="qrDataUrl": muestra la imagen solo si qrDataUrl tiene valor -->
+          @if(qrDataUrl){
+            <img [src]="qrDataUrl" alt="Código QR del Pasaje">
+          }
+          
+          <!-- @if="!qrDataUrl": muestra el circulo de carga si qrDataUrl no tiene valor -->
+           @if(!qrDataUrl){
+              <ion-spinner name="crescent"></ion-spinner> 
+           }
+        </div>
+
+        <div class="info-vuelo">
+          <span class="numero-vuelo">{{ vuelo?.codigo }}</span>
+          <span class="numero-asiento">{{ vuelo?.asiento }}</span>
+        </div>
+
+      </ion-card-content>
+
+      <ion-button class="boton-descarga" (click)="descargarTarjetaEmbarque()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        <ion-text>Tarjeta de embarque</ion-text>
+      </ion-button>
+
+      <ion-button class="boton-ubicacion" (click)="abrirRuta(vuelo!.aeropuertoSalida)">
+        <ion-icon name="location" slot="start"></ion-icon>
+        <ion-text>Ubicacion Aeropuerto</ion-text>
+      </ion-button>
+
+      <ion-item-group class="ion-margin-vertical">
+        <ion-item lines="none" class="switch-notificacion">
+          <ion-toggle
+            [(ngModel)]="notificacionesActivas"
+            (ionChange)="onToggleNotificacion($event)"
+            justify="space-between"
+            color="primary">
+            <ion-label class="ion-text-wrap">
+              <h3>Notificación</h3>
+                <p [ngClass]="notificacionesActivas ? 'notificacion-activada' : 'notificacion-desactivada'">
+                  {{ notificacionesActivas ? 'Programada' : 'Desactivada' }}
+                </p>
+            </ion-label>
+          </ion-toggle>
+        </ion-item>
+        @if(notificacionesActivas){
+          <ion-item>
+            <ion-label>
+              Cuando:
+            </ion-label>
+            <ion-datetime-button datetime="datetime"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime locale="es-AR" hourCycle="h23" id="datetime"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        }
+      </ion-item-group>
+    </ion-card>
+  </div>
+</ion-content>

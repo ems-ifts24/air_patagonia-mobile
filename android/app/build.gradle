@@ -4,7 +4,7 @@ android {
     namespace "io.ionic.starter"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "io.ionic.starter"
+        applicationId "com.airpatagonia.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -22,6 +22,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        def appName = "AirPatagonia"
+        def versionName = variant.versionName
+        def buildType = variant.buildType.name
+
+        // Genera: AirPatagonia-v1.0-debug.apk o AirPatagonia-v1.0-release.apk
+        outputFileName = "${appName}-v${versionName}-${buildType}.apk"
+    }
+}
+
 }
 
 repositories {

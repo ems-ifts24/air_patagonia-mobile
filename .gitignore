@@ -1,70 +1,121 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
+# ─────────────────────────────────────────────
+# 🔧 GENERALES DEL PROYECTO
+# ─────────────────────────────────────────────
 *~
-*.sw[mnpcod]
-.tmp
 *.tmp
 *.tmp.*
-UserInterfaceState.xcuserstate
+*.log
+*.bak
+.DS_Store
+Thumbs.db
 $RECYCLE.BIN/
 
-*.log
-log.txt
+# Logs varios
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+libpeerconnection.log
+testem.log
 
+# ─────────────────────────────────────────────
+# 🧱 ANGULAR + IONIC
+# ─────────────────────────────────────────────
+node_modules/
+package-lock.json
 
-/.sourcemaps
-/.versions
-/coverage
+dist/
+www/
+out-tsc/
+.tmp/
+.sourcemaps
+.versions
+coverage/
+.connect.lock
 
-# Ionic
-/.ionic
-/www
-/platforms
-/plugins
+.angular/
+.angular/cache
+.nx/
+.nx/cache
+.typings
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+/.ionic/
+platforms/
+plugins/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# ─────────────────────────────────────────────
+# 📱 ANDROID (Gradle + Capacitor)
+# ─────────────────────────────────────────────
 
-# IDEs and editors
+*.apk
+*.aar
+*.ap_
+*.aab
+*.dex
+*.class
+*.hprof
+
+.gradle/
+build/
+android/build/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/captures/
+android/bin/
+android/gen/
+android/out/
+android/proguard/
+android/.navigation/
+android/.externalNativeBuild
+android/.cxx/
+android/freeline*
+android/vcs.xml
+android/lint/
+android/capacitor-cordova-android-plugins
+
+# Archivos generados por Capacitor
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+
+# IntelliJ / Android Studio
+*.iml
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-project
-*.sublime-workspace
+.idea/caches
+.idea/modules.xml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+.idea/navEditor.xml
 
-# Visual Studio Code
+# Google services (descomentá si lo usás)
+# android/app/google-services.json
+
+# Keystore (descomentá si lo querés ignorar)
+# *.jks
+# *.keystore
+
+# ─────────────────────────────────────────────
+# 💻 EDITORES
+# ─────────────────────────────────────────────
+
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
+.project
+.classpath
+.settings/
+.c9/
+*.launch
+*.sublime-project
+*.sublime-workspace
 
-# Miscellaneous
-/.angular
-/.angular/cache
-.sass-cache/
-/.nx
-/.nx/cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
-.DS_Store
-Thumbs.db
+# Otros
+.history/

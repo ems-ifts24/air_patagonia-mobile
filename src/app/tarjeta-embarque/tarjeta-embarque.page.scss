@@ -1,0 +1,139 @@
+// estilos para boton descarga 
+ion-button.boton-descarga,
+ion-button.boton-ubicacion {
+    --background: #1c3e65;
+    --border-radius: 0.9375rem;
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
+    --padding-top: 1.1rem;
+    --padding-bottom: 1.1rem;
+    font-weight: 500;
+    font-size: 1.0rem;
+    color: white;
+    width: 90%;
+    max-width: 90%;
+    display: block;
+    margin: 0.5rem auto;
+    --ion-text-transform: none;
+    text-transform: none;
+    --box-shadow: none;
+}
+
+ion-icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+// boton volver
+ion-back-button {
+    --color: #ffffff;
+    margin-left: 0.75rem;
+    margin-top: 3rem;
+}
+
+// estilos barra superior
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    position: absolute;
+}
+
+ion-content {
+    --padding-top: 80px;
+    ;
+}
+
+h3{
+    color: white;
+}
+.qr-container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+
+    h2 {
+        padding: 20px;
+        width: 100%;
+        font-size: 40px;
+        margin: 0;
+    }
+}
+
+ion-card-content {
+    height: auto;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+}
+
+.qr-card {
+    background: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    margin: 0 auto;
+    border-radius: 1rem;
+    box-shadow: none;
+
+    .qr-code {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0;
+
+        img {
+            max-width: 100%;
+            max-height: 280px;
+            width: 280px;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+}
+
+.info-vuelo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    .numero-vuelo,
+    .numero-asiento {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #0d1e29a6;
+        white-space: nowrap;
+    }
+}
+
+.nombre-pasajero {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0d1e29a6;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0.3rem 0;
+}
+
+.switch-notificacion {
+    --background: #1c3e65;
+    margin-top: 1.5rem;
+}
+
+.notificacion-activada {
+    color: chartreuse;
+}
+
+.notificacion-desactivada {
+    color: white;
+}

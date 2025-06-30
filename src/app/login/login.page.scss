@@ -1,0 +1,61 @@
+// estilos para los input 
+ion-item {
+
+    --background: rgba(255, 255, 255, 0.1);
+    --border-radius: 15px;
+    margin: 0 auto 16px auto;
+    --color: #ffffff8a;
+    max-width: 300px;
+}
+
+// estilos para texto de input
+ion-input {
+    --color: #1d2a36;
+}
+
+// estilos para boton 
+ion-button {
+    --background: #0d3b6c82;
+    --border-radius: 15px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+    font-weight: 600;
+    color: white;
+    max-width: 300px;
+    margin: auto;
+}
+
+// estilos titulos
+h2 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+// estilos link
+a {
+    color: #1f2c35;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+// estilos barra superior
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+// estilo logo
+.logo {
+    width: 190px;
+    height: auto;
+}
+
+// separacion entre el contenido y el header
+ion-content {
+    --padding-top: 100px;
+}
