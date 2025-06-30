@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
-import { listaVuelos, Vuelo } from '../Mocks/vuelos.mock';
 import { 
   IonContent, 
   IonGrid, 
@@ -18,6 +16,10 @@ import {
   IonText
 } from '@ionic/angular/standalone';
 
+import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
+import { listaVuelos } from '../Mocks/vuelos.mock';
+import { Vuelo } from '../models/vuelos.model';
+import { SharedModule } from '../shared/shared.module';
 
 @Component({
   selector: 'app-home',
@@ -28,17 +30,7 @@ import {
     CommonModule,
     FormsModule,
     RouterLink,
-    IonContent,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardContent,
-    IonSearchbar,
-    IonButton,
-    IonText
+    SharedModule
   ]
 })
 export class HomePage {

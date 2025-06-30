@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
 import {
   IonHeader,
   IonToolbar,
@@ -18,17 +17,23 @@ import {
   IonLabel,
   IonSpinner,
   IonToggle,
-  ToastController,
+  ToastController
 } from '@ionic/angular/standalone';
-import { download, location, chevronBackOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { IonText, IonDatetime, IonDatetimeButton, IonModal } from '@ionic/angular/standalone';
 
 import { TarjetaEmbarqueService } from '../services/tarjeta-embarque.service';
 import { UbicacionService } from 'src/app/services/ubicacion.service';
 import { NotificacionService } from 'src/app/services/notificaciones.service';
-import { Vuelo, listaVuelos, Coordenadas, datosQR, coordenadasAEP, coordenadasEZE, NotificacionVuelo, listaNotificaciones } from '../Mocks/vuelos.mock';
-import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
+import { listaVuelos, coordenadasAEP, coordenadasEZE, listaNotificaciones } from '../Mocks/vuelos.mock';
+import { userFrancisco } from '../Mocks/userApp.mock';
+import { download, location, chevronBackOutline } from 'ionicons/icons';
+import { SharedModule } from '../shared/shared.module';
+import { UserApp } from '../models/userApp.model';
+import { Vuelo } from '../models/vuelos.model';
+import { Coordenadas } from '../models/coordenadas.mode';
+import { datosQR } from '../models/datosQr.model';
+import { NotificacionVuelo } from '../Mocks/vuelos.mock';
 
 @Component({
   selector: 'app-tarjeta-embarque',
@@ -53,10 +58,11 @@ import { UserApp, userFrancisco } from '../Mocks/userApp.mock';
     IonSpinner,
     IonToggle,
     IonText,
-    FormsModule,
     IonDatetime,
     IonDatetimeButton,
-    IonModal
+    IonModal,
+    SharedModule,
+    FormsModule
   ]
 })
 export class TarjetaEmbarquePage implements OnInit {
@@ -106,7 +112,7 @@ export class TarjetaEmbarquePage implements OnInit {
     try {
       this.datosQR = {
         nombrePasajero: this.userApp!.nombre + ' ' + this.userApp!.apellido,
-        dniPasajero: this.userApp!.dni,
+        dniPasajero: this.userApp!.credenciales.dni.toString(),
         numeroVuelo: this.vuelo!.codigo,
         numeroAsiento: this.vuelo!.asiento,
         clase: this.vuelo!.clase,

@@ -1,18 +1,4 @@
-export interface Vuelo {
-    codigo: string;
-    origen: string;
-    destino: string;
-    estado: string;
-    asiento: string;
-    clase: string;
-    fechaVuelo: Date;
-    esInternacional: boolean;
-    aeropuertoSalida: string;
-    aeropuertoLlegada: string;
-    horaSalida: Date;
-    horaLlegada: Date;
-    puertaEmbarque: string;
-}
+import { Vuelo } from "../models/vuelos.model";
 
 export const listaVuelos: Vuelo[] = [
     {
@@ -115,19 +101,3 @@ export const coordenadasEZE = {
     longitud: -58.5398
 };
 
-export interface datosQR {
-    nombrePasajero: string;
-    dniPasajero: string;
-    numeroVuelo: string;
-    numeroAsiento: string;
-    clase: string;
-    fechaVuelo: Date;
-    aeropuertoSalida: string;
-    ciudadSalida: string;
-    horaSalida: Date;
-    aeropuertoLlegada: string;
-    ciudadLlegada: string;
-    horaLlegada: Date;
-    horaEmbarque: Date;
-    puertaEmbarque: string;
-}

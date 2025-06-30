@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonItem, IonInput, IonButton, IonText, ToastController, IonNote, IonInputPasswordToggle } from '@ionic/angular/standalone';
+import { LoginService } from '../services/login.service';
+import { Credenciales } from '../models/userApp.model';
+import { SharedModule } from '../shared/shared.module';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +22,8 @@ import { IonContent, IonItem, IonInput, IonButton, IonText, ToastController, Ion
     IonButton,
     IonText,
     IonNote,
-    IonInputPasswordToggle
+    IonInputPasswordToggle,
+    SharedModule
   ]
 })
 
@@ -28,7 +33,11 @@ export class LoginPage implements OnInit {
   dni: string = '';
   password: string = '';
 
-  constructor(private router: Router, private fb: FormBuilder, private toastController: ToastController) {
+  constructor(
+    private router: Router, 
+    private fb: FormBuilder, 
+    private toastController: ToastController,
+    private loginService: LoginService) {
     this.formulario = this.fb.group({
       dni: [null, [
         Validators.required
@@ -66,33 +75,35 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.loginService.iniciarCredencialesPorDefecto();
+
     this.formulario.get('dni')?.valueChanges.subscribe((value) => {
       this.dni = value.toString();
     });
     this.formulario.get('password')?.valueChanges.subscribe((value) => {
       this.password = value.toString();
     });
+    
   }
 
-  login() {
-
-    const dniIngresado = this.formulario.value.dni.toString();
-    const passIngresada = this.formulario.value.password.toString();
+  async login() {
+    const dniIngresado = this.formulario.value.dni;
+    const contraseniaIngresada = this.formulario.value.password;
   
-    const dniCorrecto = '12345678';
-    const passCorrecta = '12345678';
+    const credenciales: Credenciales = {
+      dni: dniIngresado,
+      contrasenia: contraseniaIngresada
+    };
   
-    if (dniIngresado === dniCorrecto && passIngresada === passCorrecta) {
+    const esValido = await this.loginService.validarCredenciales(credenciales);
+  
+    if (esValido) {
       this.router.navigate(['/home']);
-    } else if (dniIngresado !== dniCorrecto && passIngresada !== passCorrecta) {
-      this.toast('El DNI y la contraseña son incorrectos');
-    } else if (dniIngresado !== dniCorrecto) {
-      this.toast('El DNI es incorrecto');
-    } else if (passIngresada !== passCorrecta) {
-      this.toast('La contraseña es incorrecta');
+    } else {
+      this.toast('DNI o contraseña incorrectos');
     }
   }
-  
 
   // metodo para mostrar msj emergente temporal
   async toast(mensaje: string) {
