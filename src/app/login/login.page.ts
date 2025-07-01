@@ -53,8 +53,8 @@ export class LoginPage implements OnInit {
   // Función para validar que solo se ingresen números
   soloNumeros(event: KeyboardEvent) {
     const pattern = /[0-9]/;
-    const inputChar = String.fromCharCode(event.keyCode || event.which);
-    
+    //const inputChar = String.fromCharCode(event.keyCode || event.which);
+    const inputChar = event.key;//modifico por deprecados
     if (!pattern.test(inputChar)) {
       event.preventDefault();
       this.mostrarError('Solo se permiten números');
