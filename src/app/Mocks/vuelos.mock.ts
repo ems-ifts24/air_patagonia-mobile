@@ -11,9 +11,9 @@ export const listaVuelos: Vuelo[] = [
       esInternacional: false,
       aeropuertoSalida: 'AEP',
       aeropuertoLlegada: 'BRC',
-      fechaVuelo: new Date(Date.UTC(2025, 6, 2)), // 2 julio 2025
-      horaSalida: new Date(Date.UTC(2025, 6, 2, 11, 45)),
-      horaLlegada: new Date(Date.UTC(2025, 6, 2, 12, 45)),
+      fechaVuelo: new Date(2025, 6, 4), // 4 julio 2025
+      horaSalida: new Date(2025, 6, 4, 13, 45),
+      horaLlegada: new Date(2025, 6, 4, 15, 45),
       puertaEmbarque: '8'
     },
     {
@@ -26,9 +26,9 @@ export const listaVuelos: Vuelo[] = [
       esInternacional: true,
       aeropuertoSalida: 'EAP',
       aeropuertoLlegada: 'MVD',
-      fechaVuelo: new Date(Date.UTC(2025, 8, 7)), // 7 sep
-      horaSalida: new Date(Date.UTC(2025, 8, 7, 9, 30)),
-      horaLlegada: new Date(Date.UTC(2025, 8, 7, 10, 50)),
+      fechaVuelo: new Date(2025, 8, 7), // 7 sep
+      horaSalida: new Date(2025, 8, 7, 9, 30),
+      horaLlegada: new Date(2025, 8, 7, 10, 50),
       puertaEmbarque: ''
     },
     {
@@ -41,9 +41,9 @@ export const listaVuelos: Vuelo[] = [
       esInternacional: false,
       aeropuertoSalida: 'EZE',
       aeropuertoLlegada: 'MDQ',
-      fechaVuelo: new Date(Date.UTC(2025, 7, 15)), // 15 ago
-      horaSalida: new Date(Date.UTC(2025, 7, 15, 10, 0)),
-      horaLlegada: new Date(Date.UTC(2025, 7, 15, 10, 50)),
+      fechaVuelo: new Date(2025, 7, 15), // 15 ago
+      horaSalida: new Date(2025, 7, 15, 10, 0),
+      horaLlegada: new Date(2025, 7, 15, 10, 50),
       puertaEmbarque: ''
     },
     {
@@ -56,9 +56,9 @@ export const listaVuelos: Vuelo[] = [
       esInternacional: false,
       aeropuertoSalida: 'EZE',
       aeropuertoLlegada: 'TUC',
-      fechaVuelo: new Date(Date.UTC(2025, 9, 15)), // 15 oct
-      horaSalida: new Date(Date.UTC(2025, 9, 15, 12, 0)),
-      horaLlegada: new Date(Date.UTC(2025, 9, 15, 13, 45)),
+      fechaVuelo: new Date(2025, 9, 15), // 15 oct
+      horaSalida: new Date(2025, 9, 15, 12, 0),
+      horaLlegada: new Date(2025, 9, 15, 13, 45),
       puertaEmbarque: ''
     }
   ];
@@ -72,16 +72,16 @@ export interface NotificacionVuelo {
 
 export const listaNotificaciones: NotificacionVuelo[] = [
     {
-        codigoVuelo: 'AR1234', fechaNotificacion: new Date(Date.UTC(2025, 6, 2, 11, 45))
+        codigoVuelo: 'AR1234', fechaNotificacion: new Date(2025, 6, 4, 13, 45)
     },
     {
-        codigoVuelo: 'AR1235', fechaNotificacion: new Date(Date.UTC(2025, 8, 7, 9, 30))
+        codigoVuelo: 'AR1235', fechaNotificacion: new Date(2025, 8, 7, 9, 30)
     },
     {
-        codigoVuelo: 'AR1236', fechaNotificacion: new Date(Date.UTC(2025, 7, 15, 10, 0))
+        codigoVuelo: 'AR1236', fechaNotificacion: new Date(2025, 7, 15, 10, 0)
     },
     {
-        codigoVuelo: 'AR1237', fechaNotificacion: new Date(Date.UTC(2025, 9, 15, 12, 0))
+        codigoVuelo: 'AR1237', fechaNotificacion: new Date(2025, 9, 15, 12, 0)
     }
 ];
 
