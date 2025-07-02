@@ -80,9 +80,11 @@ export class LoginPage implements OnInit {
     this.formulario.get('dni')?.valueChanges.subscribe((value) => {
       this.dni = value.toString();
       
+      
     });
     this.formulario.get('password')?.valueChanges.subscribe((value) => {
       this.password = value.toString();
+      
       
     });
     
@@ -100,9 +102,14 @@ export class LoginPage implements OnInit {
     const esValido = await this.loginService.validarCredenciales(credenciales);
   
     if (esValido) {
-      this.router.navigate(['/home']);
+       this.formulario.reset();
+       this.router.navigate(['/home']);
+     
+
     } else {
+      this.formulario.reset();
       this.toast('DNI o contraseña incorrectos');
+      
     }
   }
 
