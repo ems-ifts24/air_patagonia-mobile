@@ -5,14 +5,14 @@
         <ion-col size="12" size-md="8" size-lg="6">
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Ayuda</ion-card-title>
+              <ion-card-title>INFORME DE ERROR</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
               <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
-                <ion-item>
+                <ion-item class="espacio-label">
                   <ion-label position="floating" for="codigoVuelo">Código de Vuelo</ion-label>
-                  <ion-input formControlName="codigoVuelo" id="codigoVuelo" [ngClass]="{
+                  <ion-input formControlName="codigoVuelo" id="codigoVuelo" placeholder="ej:AR1111" [ngClass]="{
                     'is-invalid' : tieneErrores('codigoVuelo','required')||tieneErrores('codigoVuelo','minlength')
                   }"></ion-input>
                 </ion-item>
@@ -23,9 +23,9 @@
                   <div>Minimo Requerido</div>
                 }
 
-                <ion-item>
+                <ion-item class="espacio-label">
                   <ion-label position="floating" for="nombre">Nombre</ion-label>
-                  <ion-input formControlName="nombre" id="nombre" [ngClass]="{
+                  <ion-input formControlName="nombre" id="nombre" placeholder="ej:Leonel belgrano" [ngClass]="{
                     'is-invalid' : tieneErrores('nombre','required')||tieneErrores('nombre','minlength')
                   }"></ion-input>
                 </ion-item>
@@ -36,9 +36,9 @@
                   <div>Ingrese nombre valido</div>
                 }
 
-                <ion-item>
+                <ion-item class="espacio-label">
                   <ion-label position="floating" for="email">Email</ion-label>
-                  <ion-input type="email" formControlName="email" id="email" [ngClass]="{
+                  <ion-input type="email" formControlName="email" id="email" placeholder="ej:airpatagonia@hotmail.com" [ngClass]="{
                     'is-invalid' : tieneErrores('email','required')||tieneErrores('email','email')
                   }"></ion-input>
                 </ion-item>
@@ -46,12 +46,12 @@
                   <div>Email requerido</div>
                 }
                 @if(tieneErrores('email','email')) {
-                  <div>Ingrese mail valido</div>
+                  <div>Ingrese un email valido</div>
                 }
 
-                <ion-item>
+                <ion-item class="espacio-label">
                   <ion-label position="floating" for="tel">Teléfono</ion-label>
-                  <ion-input type="tel" formControlName="telefono" id="tel" [ngClass]="{
+                  <ion-input type="tel" formControlName="telefono" id="tel" placeholder="ej:12345678" [ngClass]="{
                     'is-invalid' : tieneErrores('telefono','required')||tieneErrores('telefono','minlength')||tieneErrores('telefono','pattern')
                   }"></ion-input>
                 </ion-item>
@@ -59,12 +59,12 @@
                   <div>Telefono requerido</div>
                 }
                 @if(tieneErrores('telefono','pattern')) {
-                  <div>Ingrese Numero Valido</div>
+                  <div>Ingrese un Numero telefonico Valido</div>
                 }
 
-                <ion-item>
+                <ion-item class="espacio-label">
                   <ion-label position="floating" for="mensaje">Mensaje</ion-label>
-                  <ion-textarea formControlName="mensaje" id="mensaje" [ngClass]="{
+                  <ion-textarea formControlName="mensaje" id="mensaje" placeholder="ej:horario incorrecto" [ngClass]="{
                     'is-invalid' : tieneErrores('mensaje','required')
                   }"></ion-textarea>
                 </ion-item>
